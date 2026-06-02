@@ -14,13 +14,12 @@ app.get('/', function(req, res) {
 var upload = multer({ dest: 'uploads/' });
 
 app.post('/api/fileanalyse', upload.single('upfile'), function(req, res) {
+  console.log("FCC llegó al endpoint");
+  console.log(req.file);
+
   res.json({
     name: req.file.originalname,
     type: req.file.mimetype,
     size: req.file.size
   });
-});
-
-var listener = app.listen(process.env.PORT || 3000, function() {
-  console.log('Listening on port ' + listener.address().port);
 });
